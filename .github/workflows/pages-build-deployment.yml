@@ -11,17 +11,18 @@ permissions:
   id-token: write
 
 jobs:
-  preload-artifacts:
+  preload:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/upload-artifact@v3
+      - name: Preload legacy upload-artifact to avoid GitHub bug
+        uses: actions/upload-artifact@v2
         with:
           name: dummy
-          path: ./does-not-exist
+          path: ./nonexistent
           if-no-files-found: ignore
 
   deploy:
-    needs: preload-artifacts
+    needs: preload
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
