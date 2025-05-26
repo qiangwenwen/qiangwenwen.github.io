@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/jekyll-build-pages@v1
-      - uses: actions/upload-pages-artifact@v1
+      - uses: actions/upload-pages-artifact@v1  # ✅ 这个是重点，别写错
 
   deploy:
     needs: build
@@ -27,3 +27,4 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v1
+
